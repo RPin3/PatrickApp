@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mi Aplicación</string>
+    <string name="practica_1_saludo">Bienvenido a la Práctica 1</string>
+    <string name="txtNombre">Ingrese su nombre</string>
+    <string name="btnPulsar">Pulsar</string>
+    <string name="btnLimpiar">Limpiar</string>
+    <string name="btnCerrar">Cerrar</string>
+</resources>
