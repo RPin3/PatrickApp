@@ -6,4 +6,10 @@
     <string name="btnPulsar">Pulsar</string>
     <string name="btnLimpiar">Limpiar</string>
     <string name="btnCerrar">Cerrar</string>
+    <string name="alumno">Alan Albino Tellez Giron Lizarraga</string>
+    <string name="matricula">22050381</string>
+    <string name="materia">programacion movil</string>
+    <string name="altura">Captura tu altura</string>
+    <string name="peso">Captura tu peso</string>
+    <string name="msj">Su resultado Aparece aqui¡</string>
 </resources>
