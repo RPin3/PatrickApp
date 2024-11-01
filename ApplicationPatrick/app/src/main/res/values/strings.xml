@@ -12,4 +12,11 @@
     <string name="altura">Captura tu altura</string>
     <string name="peso">Captura tu peso</string>
     <string name="msj">Su resultado Aparece aqui¡</string>
+    <string name="btn_limpiar">Limpiar</string>
+    <string name="btn_calcular">Calcular</string>
+    <string name="far">Farenheid</string>
+    <string name="cel">Celcius</string>
+    <string name="cantidad">Ingresar Cantidad:</string>
+    <string name="btn_cerrar">Cerrar</string>
+    <string name="res">Resultado</string>
 </resources>

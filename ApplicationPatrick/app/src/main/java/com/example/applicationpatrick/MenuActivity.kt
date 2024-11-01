@@ -27,6 +27,8 @@ class MenuActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        IniciarComponentes()
+        eventosClick()
     }
     fun IniciarComponentes(){
         crvHola = findViewById(R.id.crvHola) as CardView
@@ -39,6 +41,18 @@ class MenuActivity : AppCompatActivity() {
     fun eventosClick(){
         crvHola.setOnClickListener(View.OnClickListener {
             val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         })
+        crvIMC.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, ImcActivity::class.java)
+            startActivity(intent)
+        })
+        crvConvetidor.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, Convertidor::class.java)
+            startActivity(intent)
+        })
+        crvSalida.setOnClickListener {
+            finish()
+        }
     }
 }
