@@ -52,29 +52,24 @@ class CotizacionActivity : AppCompatActivity() {
         btnLimpiar = findViewById(R.id.btnLimpiar)
         btnCerrar = findViewById(R.id.btnCerrar)
 
-        // Obtener el cliente de la intención
         val strCliente: String = intent.getStringExtra("cliente").toString()
         txtCliente.text = strCliente
 
-        // Generar un folio inicial
         val folio: Int = cotizacion.generaFolio()
         txtFolio.text = "Folio: $folio"
     }
 
     private fun eventosClic() {
         btnCalcular.setOnClickListener {
-            // Validar datos obligatorios
             if (txtDescripcion.text.isBlank() || txtPrecio.text.isBlank() || txtPorPagI.text.isBlank()) {
                 Toast.makeText(this, "Faltó capturar algún dato", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // Asignar valores a la instancia de la cotización
             cotizacion.descripcion = txtDescripcion.text.toString()
             cotizacion.precio = txtPrecio.text.toString().toFloat()
             cotizacion.porPagInicial = txtPorPagI.text.toString().toFloat()
 
-            // Determinar el plazo seleccionado
             cotizacion.plazos = when {
                 rdb12.isChecked -> 12
                 rdb24.isChecked -> 24
@@ -83,20 +78,17 @@ class CotizacionActivity : AppCompatActivity() {
                 else -> 0
             }
 
-            // Validar que se haya seleccionado un plazo
             if (cotizacion.plazos == 0) {
                 Toast.makeText(this, "Selecciona un plazo válido", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // Realizar los cálculos y mostrar los resultados
             txtPagoInicial.text = "Pago Inicial: $${"%.2f".format(cotizacion.calcularPagoInicial())}"
             txtTotalFin.text = "Total a Financiar: $${"%.2f".format(cotizacion.calcularTotalFin())}"
             txtPagoMensual.text = "Pago Mensual: $${"%.2f".format(cotizacion.calcularPagoMensual())}"
         }
 
         btnLimpiar.setOnClickListener {
-            // Limpiar campos
             txtFolio.text = "Folio"
             txtPagoInicial.text = "Pago Inicial"
             txtTotalFin.text = "Total a Financiar"
@@ -106,7 +98,6 @@ class CotizacionActivity : AppCompatActivity() {
             txtPrecio.text.clear()
             txtPorPagI.text.clear()
 
-            // Restablecer el radio de 12 meses como predeterminado
             rdb12.isChecked = true
         }
 

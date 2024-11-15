@@ -59,6 +59,11 @@ class MonedasActivity : AppCompatActivity() {
                 val item = parent?.getItemAtPosition(position).toString()
                 Toast.makeText(applicationContext, "Seleccionaste $item", Toast.LENGTH_SHORT).show()
                 pos = position
+
+                if (position == parent?.count?.minus(1)) {
+                    Toast.makeText(applicationContext, "Cerrando aplicación", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}

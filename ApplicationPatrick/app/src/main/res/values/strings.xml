@@ -26,6 +26,7 @@
         <item> Dolares Americanos - Pesos Mexicanos</item>
         <item> Dolares Canadienses - Pesos Mexicanos</item>
         <item> Euros - Pesos Mexicanos</item>
+        <item>Terminar aplicación</item>
     </string-array>
     <string name="dolara">19.75</string>
     <string name="dolarc">14.75</string>
