@@ -51,6 +51,15 @@ class MenuActivity : AppCompatActivity() {
             val intent = Intent(this, Convertidor::class.java)
             startActivity(intent)
         })
+        crvConvertidor.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, MonedasActivity::class.java)
+            startActivity(intent)
+        })
+
+        crvCotizacion.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, Cliente::class.java)
+            startActivity(intent)
+        })
         crvSalida.setOnClickListener {
             finish()
         }

@@ -2,7 +2,6 @@ package com.example.applicationpatrick
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Adapter
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -16,19 +15,20 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class MonedasActivity : AppCompatActivity() {
-    private lateinit var txtCantidad : EditText
+    private lateinit var txtCantidad: EditText
     private lateinit var spnConvertidor: Spinner
-    private lateinit var btnCalcular : Button
-    private lateinit var btnLimpiar : Button
-    private lateinit var btnCerrar : Button
-    private lateinit var txtResultado : TextView
-
+    private lateinit var btnCalcular: Button
+    private lateinit var btnLimpiar: Button
+    private lateinit var btnCerrar: Button
+    private lateinit var txtResultado: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_monedas)
         iniciarComponentes()
+        eventosClick()
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -36,38 +36,35 @@ class MonedasActivity : AppCompatActivity() {
         }
     }
 
-    public fun iniciarComponentes(){
-        txtCantidad = findViewById(R.id.txtCantidad) as EditText
-        spnConvertidor = findViewById(R.id.spnConversion) as Spinner
-        btnCerrar = findViewById(R.id.btnCerrar) as Button
-        btnLimpiar = findViewById(R.id.btnLimpiar) as Button
-        btnCalcular = findViewById(R.id.btnCalcular) as Button
-        txtResultado = findViewById(R.id.txtResultado) as TextView
+    private fun iniciarComponentes() {
+        txtCantidad = findViewById(R.id.txtCantidad)
+        spnConvertidor = findViewById(R.id.spnConversion)
+        btnCerrar = findViewById(R.id.btnCerrar)
+        btnLimpiar = findViewById(R.id.btnLimpiar)
+        btnCalcular = findViewById(R.id.btnCalcular)
+        txtResultado = findViewById(R.id.txtResultado)
 
-        //llenar el spinner con fuente de datos mediante un adaptador
+        // Llenar el spinner con el adaptador
         val items = resources.getStringArray(R.array.array_conversiones)
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, items)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, items)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spnConvertidor.adapter = adapter
     }
-    public fun eventosClick(){
-        var pos : Int = 0
+
+    private fun eventosClick() {
+        var pos: Int = 0
 
         spnConvertidor.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val item = parent?.getItemAtPosition(position).toString()
                 Toast.makeText(applicationContext, "Seleccionaste $item", Toast.LENGTH_SHORT).show()
                 pos = position
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
-        btnCalcular.setOnClickListener (View.OnClickListener {
+
+        btnCalcular.setOnClickListener {
             val dolara = resources.getString(R.string.dolara).toFloat()
             val dolarc = resources.getString(R.string.dolarc).toFloat()
             val euro = resources.getString(R.string.euro).toFloat()
@@ -75,10 +72,8 @@ class MonedasActivity : AppCompatActivity() {
             if (txtCantidad.text.toString().isEmpty()) {
                 Toast.makeText(applicationContext, "Falto capturar la cantidad", Toast.LENGTH_SHORT).show()
             } else {
-            var resultado : Float = 0.0f
-                var cantidad : Float = 0.0f
-                cantidad = txtCantidad.text.toString().toFloat()
-                resultado = when (pos){
+                val cantidad = txtCantidad.text.toString().toFloat()
+                val resultado = when (pos) {
                     0 -> cantidad / dolara
                     1 -> cantidad / dolarc
                     2 -> cantidad / euro
@@ -87,15 +82,18 @@ class MonedasActivity : AppCompatActivity() {
                     5 -> cantidad * euro
                     else -> 0.0f
                 }
+                txtResultado.text = resultado.toString()
             }
-        })
-        btnLimpiar.setOnClickListener(View.OnClickListener {
-            txtResultado.text = ""
-        })
-        btnCerrar.setOnClickListener{
-            finish()
+        }
 
+        btnLimpiar.setOnClickListener {
+            txtCantidad.text.clear()
+            txtResultado.text = ""
+        }
+
+        btnCerrar.setOnClickListener {
+            spnConvertidor.setSelection(0)
+            finish()
         }
     }
-
 }

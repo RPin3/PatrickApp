@@ -13,6 +13,15 @@
         android:theme="@style/Theme.ApplicationPatrick"
         tools:targetApi="31">
         <activity
+            android:name=".CotizacionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Cliente"
+            android:exported="false" />
+        <activity
+            android:name=".Cotizacion"
+            android:exported="false" />
+        <activity
             android:name=".MonedasActivity"
             android:exported="false" />
         <activity
