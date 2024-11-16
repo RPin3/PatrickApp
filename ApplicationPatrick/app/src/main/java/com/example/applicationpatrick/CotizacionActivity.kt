@@ -52,8 +52,8 @@ class CotizacionActivity : AppCompatActivity() {
         btnLimpiar = findViewById(R.id.btnLimpiar)
         btnCerrar = findViewById(R.id.btnCerrar)
 
-        val strCliente: String = intent.getStringExtra("cliente").toString()
-        txtCliente.text = strCliente
+        val strCliente: String = intent.getStringExtra("Cliente") ?: "Cliente desconocido"
+        txtCliente.text = "Nombre del Cliente: $strCliente"
 
         val folio: Int = cotizacion.generaFolio()
         txtFolio.text = "Folio: $folio"
@@ -102,7 +102,7 @@ class CotizacionActivity : AppCompatActivity() {
         }
 
         btnCerrar.setOnClickListener {
-            finish() // Cerrar la actividad
+            finish()
         }
     }
 }
